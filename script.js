@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortearBtn = document.getElementById('sortear');
     const reiniciarBtn = document.getElementById('reiniciar');
     const numerosSorteadosTable = document.getElementById('numerosSorteados').getElementsByTagName('tbody')[0];
+    const numeroAtualDisplay = document.getElementById('numeroAtual');
 
     sortearBtn.addEventListener('click', function() {
         if (numerosSorteados.length === 75) {
@@ -17,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         numerosSorteados.push(numeroSorteado);
         adicionarNumeroSorteado(numeroSorteado);
+        atualizarNumeroAtual(numeroSorteado);
+
     });
 
     reiniciarBtn.addEventListener('click', function() {
@@ -29,8 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.appendChild(document.createTextNode(numero));
     }
 
+    function atualizarNumeroAtual(numero) {
+        numeroAtualDisplay.textContent = 'Número Atual: ' + numero;
+    }
+
     function reiniciarBingo() {
         numerosSorteados.length = 0;
+        numeroAtualDisplay.textContent = '';
         while (numerosSorteadosTable.firstChild) {
             numerosSorteadosTable.removeChild(numerosSorteadosTable.firstChild);
         }
